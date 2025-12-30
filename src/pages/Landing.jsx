@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { BookOpen, Users, GraduationCap, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Link } from "react-router-dom";
+import { BookOpen, Users, GraduationCap, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Landing = () => {
   return (
@@ -12,7 +12,8 @@ const Landing = () => {
             Edushare
           </h1>
           <p className="mb-12 text-xl text-muted-foreground">
-            The modern platform for educational resource sharing. Connect students, teachers, and administrators in one elegant space.
+            The modern platform for educational resource sharing. Connect
+            students, teachers, and administrators in one elegant space.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/login">
@@ -39,7 +40,8 @@ const Landing = () => {
               </div>
               <h3 className="mb-2 text-xl font-semibold">For Students</h3>
               <p className="text-muted-foreground">
-                Access course materials, download resources, and stay connected with your learning journey.
+                Access course materials, download resources, and stay connected
+                with your learning journey.
               </p>
             </div>
             <div className="text-center">
@@ -48,7 +50,8 @@ const Landing = () => {
               </div>
               <h3 className="mb-2 text-xl font-semibold">For Teachers</h3>
               <p className="text-muted-foreground">
-                Upload and manage course content, organize materials, and share knowledge effortlessly.
+                Upload and manage course content, organize materials, and share
+                knowledge effortlessly.
               </p>
             </div>
             <div className="text-center">
@@ -57,19 +60,13 @@ const Landing = () => {
               </div>
               <h3 className="mb-2 text-xl font-semibold">For Admins</h3>
               <p className="text-muted-foreground">
-                Manage users, organize programs, and maintain a structured educational environment.
+                Manage users, organize programs, and maintain a structured
+                educational environment.
               </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto px-6 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Edushare. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

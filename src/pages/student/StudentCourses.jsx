@@ -8,13 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Download, FileText, Search, Shield } from "lucide-react";
+import { Download, FileText, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { coursesService } from "../../api/apiService";
 import { toast } from "sonner";
 import Pagination from "../../components/ui/pagination";
-import CourseValidationIndicator from "../../components/CourseValidationIndicator";
-import { validateCourseList, getUserGroups } from "../../utils/courseValidation";
 
 const StudentCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -22,7 +20,6 @@ const StudentCourses = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [validationEnabled, setValidationEnabled] = useState(import.meta.env.DEV || false);
 
   useEffect(() => {
     fetchCourses();
@@ -43,16 +40,6 @@ const StudentCourses = () => {
         const totalItems = response.data?.total || 0;
         const perPage = response.data?.per_page || 12;
         setTotalPages(Math.ceil(totalItems / perPage));
-
-        // Validate courses in development mode
-        if (import.meta.env.DEV) {
-          const userGroups = await getUserGroups();
-          const validation = validateCourseList(response.data?.data || [], userGroups);
-          if (!validation.isValid) {
-            console.warn('Course validation failed:', validation);
-            toast.warning(`Course filtering issue detected: ${validation.message}`);
-          }
-        }
       }
     } catch (error) {
       toast.error("Failed to fetch courses");
@@ -99,24 +86,6 @@ const StudentCourses = () => {
             className="pl-10"
           />
         </div>
-
-        {/* Course Validation Indicator - shown in development mode */}
-        {validationEnabled && courses.length > 0 && (
-          <CourseValidationIndicator 
-            courses={courses} 
-            showDetails={true}
-            className="border-blue-200 bg-blue-50"
-          />
-        )}
-
-        {/* Quick validation status for all users */}
-        {courses.length > 0 && (
-          <CourseValidationIndicator 
-            courses={courses} 
-            showDetails={false}
-            className="text-sm"
-          />
-        )}
 
         {loading ? (
           <div className="p-8 text-center text-muted-foreground">
